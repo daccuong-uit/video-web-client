@@ -1,0 +1,1025 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700&display=swap');
+
+/* 
+  NOTE: Manual CSS variables as fallback for Tailwind v4 
+  This ensures the Design System works even if the compiler is bypassed.
+*/
+:root {
+  /* Semantic Colors */
+  --color-success: oklch(0.65 0.2 145);
+  --color-warning: oklch(0.75 0.18 85);
+  --color-danger: oklch(0.55 0.22 25);
+  --color-info: oklch(0.6 0.18 210);
+
+    /* Typography scale: one family, eight sizes, three weights. */
+    --font-family: 'Outfit', sans-serif;
+    --font-family-ui: var(--font-family);
+    --font-size-scale: 0.92;
+    --padding-scale: 0.84;
+    --type-leading-tight: 1.25;
+    --type-leading-normal: 1.5;
+    --type-leading-relaxed: 1.75;
+    --line-height: var(--type-leading-normal);
+    --type-micro: calc(0.625rem * var(--font-size-scale));
+    --type-caption: calc(0.75rem * var(--font-size-scale));
+    --type-small: calc(0.875rem * var(--font-size-scale));
+    --type-body: calc(1rem * var(--font-size-scale));
+    --type-body-lg: calc(1.25rem * var(--font-size-scale));
+    --type-heading: calc(1.5rem * var(--font-size-scale));
+    --type-title: calc(2rem * var(--font-size-scale));
+    --type-display: calc(2.5rem * var(--font-size-scale));
+    --font-size-body: var(--type-body);
+    --font-size-label: var(--type-small);
+    --font-size-caption: var(--type-caption);
+    --font-size-heading-sm: var(--type-body-lg);
+    --font-size-heading-md: var(--type-heading);
+    --font-size-heading-lg: var(--type-title);
+    --font-size-sm: var(--type-small);
+    --font-size-xs: var(--type-caption);
+    --font-size-md: var(--type-body);
+    --font-size-lg: var(--type-body-lg);
+    --font-size-xl: var(--type-heading);
+    --font-size-heading: var(--type-title);
+    --font-size-title: var(--type-heading);
+    --font-size-subtitle: var(--type-body-lg);
+    --font-size-subtitle-sm: var(--type-small);
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-strong: 700;
+    --font-weight-heavy: 700;
+    --button-height: 2rem;
+    --button-min-width: 4.25rem;
+    --button-padding-inline: 0.625rem;
+    --button-gap: 0.375rem;
+    --button-group-gap: 0.5rem;
+    --button-radius: 0.375rem;
+    --button-font-size: var(--type-small);
+    --button-font-weight: var(--font-weight-medium);
+    --button-transition: 160ms cubic-bezier(0.2, 0, 0, 1);
+    --std-icon-size-lg: 28px;
+    --avatar-size-md: calc(40px * var(--padding-scale, 1));
+    --feed-composer-height: 148px;
+
+  /* ▌ DYNAMIC SPACING SYSTEM ▌
+     Base unit scales from 4px. User adjusts in Settings → spacing scale changes.
+     All padding/margin then recalculates using multiplication/division.
+  */
+  --spacing-scale-base: 4px;
+  /* Base unit — default 4px (1 × base) */
+  --spacing-1: calc(var(--spacing-scale-base) * 1);
+  /* 4px */
+  --spacing-2: calc(var(--spacing-scale-base) * 2);
+  /* 8px */
+  --spacing-2-5: calc(var(--spacing-scale-base) * 2.5);
+  /* 10px */
+  --spacing-3: calc(var(--spacing-scale-base) * 3);
+  /* 12px */
+  --spacing-4: calc(var(--spacing-scale-base) * 4);
+  /* 16px — default padding */
+  --spacing-5: calc(var(--spacing-scale-base) * 5);
+  /* 20px */
+  --spacing-6: calc(var(--spacing-scale-base) * 6);
+  /* 24px — card padding */
+  --spacing-7: calc(var(--spacing-scale-base) * 7);
+  /* 28px */
+  --spacing-8: calc(var(--spacing-scale-base) * 8);
+  /* 32px — section gap */
+  --spacing-10: calc(var(--spacing-scale-base) * 10);
+  /* 40px */
+  --spacing-12: calc(var(--spacing-scale-base) * 12);
+  /* 48px */
+  --spacing-16: calc(var(--spacing-scale-base) * 16);
+  /* 64px — large section */
+  --spacing-20: calc(var(--spacing-scale-base) * 20);
+  /* 80px */
+  --spacing-24: calc(var(--spacing-scale-base) * 24);
+  /* 96px */
+
+  /* ▌ CARD & BORDER STYLING ▌ */
+  --card-border-radius: 8px;
+  --card-padding: var(--spacing-4);
+  /* 24px or scaled */
+
+  /* ─── Page Shell Layout Tokens ───────────────────────────────
+     Single source-of-truth for all page layout dimensions.
+     Changing these propagates to Home, Profile, and Settings.
+     All layout sizes are now fully dynamic and depend on user scaling.
+  ─────────────────────────────────────────────────────────── */
+  --page-sidebar-width: calc(var(--spacing-scale-base) * 64);
+  /* Left nav — full labels */
+  --page-sidebar-collapsed: 72px;
+  /* Left nav — icons only */
+  --page-main-width: 640px;
+  /* Main feed width */
+  --page-rightbar-width: 400px;
+  /* Right sidebar — expanded */
+  --page-rightbar-width-full: 400px;
+  /* Right sidebar — full */
+  --page-content-max-width: calc(var(--spacing-scale-base) * 335);
+  /* Page max width */
+  --header-height: 56px;
+  /* ui-shared-header */
+  --z-mobile-overlay: 40;
+  --z-mobile-drawer: 50;
+  --z-header: 120;
+  --z-panel: 1000;
+}
+
+
+/* Base Reset & Core Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* KHÔNG dùng font-size % ở html để tránh khuếch đại calc() trong design system.
+     Tất cả kích thước dùng px tuyệt đối qua CSS custom properties. */
+  font-size: 100%;
+  line-height: var(--line-height, 1.5);
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--color-surface-base);
+  color: var(--color-text-base);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease, font-family 0.3s ease;
+}
+
+/* Global Font Override for custom font switching */
+body,
+button,
+input,
+select,
+textarea,
+.tiktok-btn {
+  font-family: var(--font-family) !important;
+}
+
+/* Light Theme — Telegram Light */
+:root {
+  --color-surface-base: #ffffff;
+  --color-surface-subtle: #f7f9f9;
+  --color-border-subtle: rgba(15, 20, 25, 0.12);
+  --color-border-default: rgba(15, 20, 25, 0.12);
+  --color-text-base: #000000;
+  --color-text-muted: #707579;
+  --color-text-inverse: #ffffff;
+  --color-error: #df3f40;
+  --color-btn-bg: #eaf4fb;
+  --color-btn-hover: #d4eaf7;
+  --color-btn-border: rgba(42, 171, 238, 0.2);
+  --color-btn-border-hover: rgba(42, 171, 238, 0.4);
+  /* Telegram brand: Sky Blue #2AABEE */
+  --color-brand-primary: #2aabee;
+  --color-brand-primary-hover: #1c93e3;
+  --color-brand-gradient: linear-gradient(135deg, #2aabee, #1c93e3);
+  --color-brand-accent: #1c93e3;
+  --color-brand-secondary: #5dc8f5;
+}
+
+/* Dark Theme — Telegram Dark / Smooth Gray */
+.dark {
+  /* Soothing dark gray surfaces */
+  --color-surface-base: #18181b;
+  --color-surface-subtle: #27272a;
+  --color-border-subtle: #3f3f46;
+  --color-border-default: #3f3f46;
+  --color-text-base: #e4e4e7;
+  --color-text-muted: #a1a1aa;
+  --color-text-inverse: #18181b;
+  --color-error: #f87171;
+  --color-btn-bg: #27272a;
+  --color-btn-hover: #3f3f46;
+  --color-btn-border: rgba(42, 171, 238, 0.2);
+  --color-btn-border-hover: rgba(42, 171, 238, 0.4);
+  /* Telegram brand: Sky Blue #2AABEE */
+  --color-brand-primary: #38bdf8;
+  --color-brand-primary-hover: #0ea5e9;
+  --color-brand-gradient: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  --color-brand-accent: #0ea5e9;
+  --color-brand-secondary: #7dd3fc;
+}
+
+/* Ocean Theme — Threads (Meta) */
+.ocean {
+  /* Threads: ultra-minimal black-and-white with warm near-black surfaces */
+  --color-surface-base: #0a0a0a;
+  --color-surface-subtle: #171717;
+  --color-border-subtle: #262626;
+  --color-border-default: #262626;
+  --color-text-base: #fafafa;
+  --color-text-muted: #a3a3a3;
+  --color-text-inverse: #0a0a0a;
+  --color-error: #ef4444;
+  --color-btn-bg: #171717;
+  --color-btn-hover: #262626;
+  --color-btn-border: rgba(255, 255, 255, 0.1);
+  --color-btn-border-hover: rgba(255, 255, 255, 0.18);
+  /* Threads brand: pure black/white, no hue accent */
+  --color-brand-primary: #ffffff;
+  --color-brand-primary-hover: #d4d4d4;
+  --color-brand-gradient: linear-gradient(135deg, #ffffff, #a3a3a3);
+  --color-brand-accent: #ffffff;
+  --color-brand-secondary: #737373;
+}
+
+/* Forest Theme — TikTok */
+.forest {
+  /* TikTok: near-black background, Razzmatazz red + Splash cyan accents */
+  --color-surface-base: #000000;
+  --color-surface-subtle: #121212;
+  --color-border-subtle: #27272a;
+  --color-border-default: #27272a;
+  --color-text-base: #ffffff;
+  --color-text-muted: #a1a1aa;
+  --color-text-inverse: #000000;
+  --color-error: #f43f5e;
+  --color-btn-bg: #18181b;
+  --color-btn-hover: #27272a;
+  --color-btn-border: rgba(254, 44, 85, 0.25);
+  --color-btn-border-hover: rgba(254, 44, 85, 0.45);
+  /* TikTok brand: Razzmatazz #FE2C55 & Splash #25F4EE */
+  --color-brand-primary: #fe2c55;
+  --color-brand-primary-hover: #e11d48;
+  --color-brand-gradient: linear-gradient(135deg, #fe2c55, #2dd4bf);
+  --color-brand-accent: #2dd4bf;
+  --color-brand-secondary: #2dd4bf;
+}
+
+/* Brand reference tokens — shared across themes */
+:root {
+  --color-tiktok-primary: #fe2c55;
+  --color-tiktok-cyan: #25f4ee;
+  --color-instagram-purple: #833ab4;
+  --color-instagram-red: #fd1d1d;
+  --color-instagram-orange: #fcaf45;
+  --color-threads-black: #000000;
+  --color-threads-white: #ffffff;
+}
+
+/* ─── TikTok Button ─────────────────────────────────────────────────── */
+.tiktok-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--button-height);
+  min-height: var(--button-height);
+  min-width: var(--button-min-width);
+  padding: 0 var(--button-padding-inline);
+  border: 1px solid var(--color-btn-border);
+  background-color: var(--color-btn-bg);
+  color: var(--color-text-base);
+  font-family: var(--font-family);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  /* Matching TikTok's rounded buttons */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button,
+button[type="button"],
+button[type="submit"],
+input[type="button"],
+input[type="submit"],
+.std-button,
+.btn,
+.button {
+  font-family: var(--font-family-ui);
+  font-size: var(--button-font-size);
+  font-weight: var(--button-font-weight);
+  height: var(--button-height);
+  min-height: var(--button-height);
+  min-width: var(--button-min-width);
+  padding: 0 var(--button-padding-inline);
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  margin: 0 !important;
+  padding: 0 var(--button-padding-inline) !important;
+  border-radius: 8px;
+  line-height: 1;
+  transition: background-color var(--button-transition), border-color var(--button-transition), box-shadow var(--button-transition), transform var(--button-transition), color var(--button-transition);
+  cursor: pointer;
+}
+
+button:has(> svg:only-child),
+button:has(> img:only-child),
+button.icon-only,
+.icon-button,
+.profile-actions button:has(> svg:only-child),
+.profile-actions button:has(> img:only-child) {
+  width: var(--button-height);
+  min-width: var(--button-height);
+  padding: 0 !important;
+  border-radius: 8px;
+}
+
+:where(.profile-actions, .button-group, .btn-group, .actions) {
+  gap: var(--button-group-gap);
+}
+
+.std-icon,
+.icon-inline,
+.icon-button,
+svg.icon,
+button svg,
+button[type="button"] svg,
+button[type="submit"] svg,
+input[type="button"] svg,
+input[type="submit"] svg,
+.std-button svg,
+.btn svg,
+.button svg,
+.nav-icon svg,
+.header-brand-icon svg,
+.header-more-btn svg,
+.studio-icon svg,
+.upload-btn svg,
+.filter-btn svg {
+  width: 1em !important;
+  height: 1em !important;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.tiktok-btn:hover {
+  background-color: var(--color-btn-hover);
+  border-color: var(--color-btn-border-hover);
+}
+
+/* Icon pinned to left edge, text centered in remaining space */
+.tiktok-btn-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.25em;
+  height: 1.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.tiktok-btn .ui-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  line-height: 1;
+}
+
+button.loading,
+.btn.loading,
+.button.loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+button.loading > .ui-button__content,
+.btn.loading > .ui-button__content,
+.button.loading > .ui-button__content {
+  visibility: hidden;
+}
+
+.tiktok-btn-icon svg {
+  width: 1em !important;
+  height: 1em !important;
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────── */
+.fade-in {
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────────── */
+.text-h1 {
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-leading-tight);
+}
+
+.std-section-title,
+.text-h1 {
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-strong);
+  line-height: var(--type-leading-tight);
+  margin: 0 0 1rem 0;
+  color: var(--color-text-base);
+}
+
+.std-section-subtitle,
+.std-subtitle {
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-base);
+  margin: 0;
+}
+
+.std-group-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  margin: 0 0 0.5rem 0;
+}
+
+.std-row-name,
+.std-label {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-base);
+  margin: 0;
+}
+
+.std-row-desc,
+.std-caption {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+  line-height: var(--type-leading-normal);
+  margin: 0.25rem 0 0 0;
+}
+
+.std-row-value,
+.std-row-action,
+.std-meta,
+.std-badge {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.std-card {
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.06);
+}
+
+.std-card-body {
+  padding: calc(var(--padding-scale, 1) * 1.5rem);
+}
+
+.std-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.7);
+}
+
+.std-row:last-child {
+  border-bottom: none;
+}
+
+.std-row-link {
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 8px;
+  margin: 0 -1rem;
+  padding: 1rem;
+}
+
+.std-row-link:hover {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+.std-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.std-toggle input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.std-toggle-track {
+  width: 44px;
+  height: 24px;
+  border-radius: 8px;
+  background: #cbd5e1;
+  position: relative;
+  transition: background 0.25s ease;
+}
+
+.std-toggle-track::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  background: white;
+  transition: transform 0.25s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.std-toggle input:checked~.std-toggle-track {
+  background: #0f172a;
+}
+
+.std-toggle input:checked~.std-toggle-track::after {
+  transform: translateX(20px);
+}
+
+.std-chevron {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* ─── Layout helpers ─────────────────────────────────────────────────── */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.pb-5 {
+  padding-bottom: 1.25rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-3 {
+  margin-bottom: 0.75rem;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-bold {
+  font-weight: var(--font-weight-strong);
+}
+
+.font-semibold {
+  font-weight: var(--font-weight-medium);
+}
+
+.font-normal {
+  font-weight: var(--font-weight-regular);
+}
+
+.text-sm {
+  font-size: var(--type-small);
+}
+
+.text-xs {
+  font-size: var(--type-caption);
+}
+
+.max-w-sm {
+  max-width: 24rem;
+}
+
+.leading-relaxed {
+  line-height: var(--type-leading-normal);
+}
+
+.border-t {
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+.border-border-subtle {
+  border-color: var(--color-border-subtle);
+}
+
+.bg-surface-base {
+  background-color: var(--color-surface-base);
+}
+
+.text-text-base {
+  color: var(--color-text-base);
+}
+
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+.hover\:opacity-70:hover {
+  opacity: 0.7;
+}
+
+.transition-opacity {
+  transition: opacity 0.2s;
+}
+
+.whitespace-nowrap {
+  white-space: nowrap;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.bottom-0 {
+  bottom: 0;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.rounded-full {
+  border-radius: 8px;
+}
+
+.hover\:bg-surface-subtle:hover {
+  background-color: var(--color-surface-subtle);
+}
+
+.transition-colors {
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.opacity-70 {
+  opacity: 0.7;
+}
+
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+}
+
+
+/* ─── Mobile Drawer: always show full vertical sidebar menu ──── */
+/* Override the icon-only collapse when sidebar is inside the drawer */
+.mobile-drawer .sidebar-menu {
+  flex-direction: column !important;
+  align-items: stretch !important;
+  padding: 0 12px !important;
+  height: auto !important;
+}
+
+.mobile-drawer .sidebar-menu a {
+  justify-content: flex-start !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.mobile-drawer ui-sidebar-menu,
+.mobile-drawer .sidebar-menu {
+  width: 100% !important;
+}
+
+.mobile-drawer .nav-text,
+.mobile-drawer .badge {
+  display: flex !important;
+}
+
+/* Show settings label inside drawer (overrides the icon-only state) */
+.mobile-drawer-footer .page-settings-meta {
+  display: flex !important;
+}
+
+.mobile-drawer-footer .page-settings-link {
+  justify-content: flex-start !important;
+  padding: 12px 16px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(15, 20, 25, 0.28) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(15, 20, 25, 0.24);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(15, 20, 25, 0.42);
+  background-clip: padding-box;
+}
+
+button,
+input,
+select,
+textarea {
+  border-radius: 8px;
+}
+
+button:not(.icon-button):not(.hamburger-btn),
+input,
+select,
+textarea {
+  min-height: 32px;
+}
+
+.sidebar-menu {
+  padding-inline: 0;
+}
+
+.sidebar-menu a {
+  gap: 10px;
+  min-height: 40px;
+  margin-bottom: 2px;
+  padding: 9px 11px;
+  border-radius: 8px;
+}
+
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+  background: color-mix(in srgb, var(--color-brand-primary) 9%, transparent);
+}
+
+.sidebar-menu a.active {
+  color: var(--color-text-base);
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-drawer {
+  width: min(288px, 86vw);
+  box-shadow: 8px 0 24px rgba(15, 20, 25, 0.12);
+}
+
+.mobile-drawer-inner {
+  padding: 16px 8px 12px;
+}
+
+.mobile-drawer .sidebar-menu a {
+  min-height: 42px;
+  padding: 9px 11px !important;
+  border-radius: 8px;
+}
+
+.feed-header,
+.feed-reels-strip,
+.post-card {
+  border-color: var(--color-border-subtle);
+}
+
+.feed-header {
+  gap: 0;
+}
+
+.compose-actions .action-btn {
+  border-color: var(--color-border-subtle);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.post-card {
+  gap: 6px;
+}
+
+.post-author {
+  gap: 9px;
+}
+
+.post-actions {
+  justify-content: space-between;
+  gap: 2px;
+  padding-top: 2px;
+}
+
+.post-actions .action-btn {
+  min-width: 0;
+  min-height: 32px;
+  padding: 5px 7px;
+}
+
+.post-media {
+  margin-top: 2px;
+  gap: 6px;
+}
+
+.post-media img {
+  max-height: 360px;
+}
+
+.feed-empty,
+.feed-error {
+  padding: 28px 16px;
+}
+
+.feed-reels-strip {
+  padding-block: 6px;
+}
+
+.strip-header {
+  padding-bottom: 6px;
+}
+
+.reel-thumb {
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(15, 20, 25, 0.12);
+}
+
+.profile-card,
+.promo-card,
+.trending-card,
+.suggestion-card {
+  border-color: var(--color-border-subtle);
+}
+
+@media (max-width: 859.98px) {
+  button:not(.icon-button):not(.hamburger-btn),
+  input,
+  select,
+  textarea {
+    min-height: 36px;
+  }
+
+  .mobile-topbar {
+    padding-inline: 10px;
+    border-bottom: 1px solid var(--color-border-subtle);
+  }
+
+  .home-tabs-grid {
+    height: 44px;
+  }
+
+  .home-tab-btn {
+    font-size: var(--type-caption);
+  }
+
+  .post-card {
+    padding: 10px 12px;
+  }
+
+  .post-media img {
+    max-height: 280px;
+  }
+
+  .post-actions .action-btn {
+    padding-inline: 4px;
+  }
+
+  .compose-actions {
+    gap: 8px;
+  }
+}

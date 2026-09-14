@@ -1,0 +1,22 @@
+<div class="sidebar-right">
+  <div class="sidebar-scroll-container">
+    <div class="sidebar-content">
+
+      <!-- Full-featured Comments Panel (conditionally visible) -->
+      <ng-container *ngIf="reelsService.showComments()">
+        <fe-reels-comments class="desktop-comments"></fe-reels-comments>
+      </ng-container>
+
+      <!-- Placeholder when comments not open -->
+      <ng-container *ngIf="!reelsService.showComments()">
+        <div class="comments-empty fade-in" style="margin-top: 24px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <p>Nhấn vào biểu tượng bình luận để xem.</p>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

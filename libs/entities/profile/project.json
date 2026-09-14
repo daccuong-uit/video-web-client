@@ -1,0 +1,28 @@
+{
+  "name": "entity-profile",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/entities/profile/src",
+  "prefix": "entity-profile",
+  "projectType": "library",
+  "tags": ["type:entity", "scope:profile"],
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/entities/profile/ng-package.json",
+        "tsConfig": "libs/entities/profile/tsconfig.lib.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/entities/profile/tsconfig.lib.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

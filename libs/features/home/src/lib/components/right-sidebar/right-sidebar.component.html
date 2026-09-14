@@ -1,0 +1,117 @@
+<div class="sidebar-right">
+  <div class="sidebar-scroll-container">
+    <form class="sidebar-scroll-form">
+
+      <ng-container *ngIf="isHome()">
+
+        <section class="promo-card">
+          <div class="promo-head">
+            <span class="premium-text">Reals Premium</span>
+            <span class="badge">Giảm 50%</span>
+          </div>
+
+          <p>
+            Trải nghiệm không giới hạn, sáng tạo chuyên nghiệp với Reals AI.
+          </p>
+
+          <button class="btn btn-primary" style="width: 100%;">Đăng ký ngay</button>
+        </section>
+
+        <section class="trending-card">
+          <div class="section-title">
+            Xu hướng thịnh hành
+          </div>
+
+          <ul>
+            <li>
+              <div class="trend-meta">
+                Công nghệ · Trực tiếp
+              </div>
+
+              <strong>
+                Reals ra mắt tính năng AI mới
+              </strong>
+
+              <span class="trend-stats">
+                24.5N bài viết
+              </span>
+            </li>
+
+            <li>
+              <div class="trend-meta">
+                Giải trí · Đang thịnh hành
+              </div>
+
+              <strong>
+                Sự kiện âm nhạc 2026
+              </strong>
+
+              <span class="trend-stats">
+                18.2N bài viết
+              </span>
+            </li>
+
+            <li>
+              <div class="trend-meta">
+                Thể thao · Nổi bật
+              </div>
+
+              <strong>
+                Chung kết eSports
+              </strong>
+
+              <span class="trend-stats">
+                12.1N bài viết
+              </span>
+            </li>
+          </ul>
+
+          <a class="show-more">
+            Hiển thị thêm
+          </a>
+        </section>
+
+        <section class="trending-card">
+          <div class="section-title">
+            Gợi ý kết bạn
+          </div>
+
+          <div class="suggestions-list" style="display: flex; flex-direction: column; gap: 12px; margin-top: 12px;">
+            <app-user-card *ngFor="let u of suggestedUsers()" [user]="u" [showActions]="false"
+              (toggleFollow)="onToggleFollow(u)">
+            </app-user-card>
+          </div>
+
+          <a class="show-more" style="margin-top: 12px;">
+            Xem tất cả
+          </a>
+        </section>
+
+      </ng-container>
+
+      <ng-container *ngIf="isProfile() && !isHome()">
+        <section class="suggestion-card">
+          <div class="section-title">Thông tin nhanh</div>
+          <p class="profile-quick-text">
+            Duy trì nội dung nhất quán và cập nhật hồ sơ để tăng tương tác.
+          </p>
+          <ul class="profile-quick-list">
+            <li><strong>Thuộc tính:</strong> Cá nhân hóa tên và username.</li>
+            <li><strong>Nội dung nổi bật:</strong> Chia sẻ bài đăng mới mỗi ngày.</li>
+            <li><strong>Bảo mật:</strong> Kiểm tra cài đặt đăng nhập.</li>
+          </ul>
+          <a class="show-more" routerLink="/settings">Mở cài đặt hồ sơ</a>
+        </section>
+
+        <section class="suggestion-card">
+          <div class="section-title">Mẹo sử dụng</div>
+          <p class="profile-quick-text">
+            Thêm mô tả rõ ràng, liên kết đến kênh khác và cập nhật ảnh đại diện thường xuyên.
+          </p>
+          <button>Khám phá nội dung</button>
+        </section>
+      </ng-container>
+
+    </form>
+  </div>
+</div>
