@@ -1,9 +1,8 @@
 import { Route } from '@angular/router';
 import { authGuard } from '@fe/core';
-import { LandingComponent } from '../landing.component';
 
 export const appRoutes: Route[] = [
-  { path: '', pathMatch: 'full', component: LandingComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   {
     path: 'auth',
     loadChildren: () => import('@fe/features/auth').then((m) => m.authRoutes),
