@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
-import { VideoComponent } from './components/video/video.component';
+import { VideoShellComponent } from './components/video-shell/video-shell.component';
 
 export const videoRoutes: Route[] = [
-  { path: '', component: VideoComponent },
+  { path: '', component: VideoShellComponent },
 ];

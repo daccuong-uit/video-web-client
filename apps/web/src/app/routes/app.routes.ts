@@ -2,52 +2,12 @@ import { Route } from '@angular/router';
 import { authGuard } from '@fe/core';
 
 export const appRoutes: Route[] = [
-  { path: '', pathMatch: 'full', redirectTo: 'login' },
-  {
-    path: 'auth',
-    loadChildren: () => import('@fe/features/auth').then((m) => m.authRoutes),
-  },
-  {
-    path: 'home',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/home').then((m) => m.homeRoutes),
-  },
-  {
-    path: 'social',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/home').then((m) => m.socialRoutes),
-  },
+  { path: '', pathMatch: 'full', redirectTo: 'video' },
   {
     path: 'video',
     canActivate: [authGuard],
     loadChildren: () =>
       import('@fe/features/video').then((m) => m.videoRoutes),
-  },
-  {
-    path: 'shop',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/shop').then((m) => m.shopRoutes),
-  },
-  {
-    path: 'stories',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/stories').then((m) => m.storiesRoutes),
-  },
-  {
-    path: 'profile',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/profile').then((m) => m.profileRoutes),
-  },
-  {
-    path: 'friends',
-    canActivate: [authGuard],
-    loadChildren: () =>
-      import('@fe/features/friends').then((m) => m.friendsRoutes),
   },
   {
     path: 'reels',
@@ -61,10 +21,10 @@ export const appRoutes: Route[] = [
     loadChildren: () => import('@fe/features/media').then((m) => m.mediaRoutes),
   },
   {
-    path: 'dashboard',
+    path: 'profile',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('@fe/features/dashboard').then((m) => m.dashboardRoutes),
+      import('@fe/features/profile').then((m) => m.profileRoutes),
   },
   {
     path: 'settings',
@@ -72,8 +32,5 @@ export const appRoutes: Route[] = [
     loadChildren: () =>
       import('@fe/features/settings').then((m) => m.settingsRoutes),
   },
-  { path: 'login', redirectTo: 'auth/login' },
-  { path: 'register', redirectTo: 'auth/register' },
-  { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: 'video' },
 ];
-
